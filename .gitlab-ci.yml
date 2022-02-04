@@ -40,7 +40,7 @@ deploy to surge:
     - surge --project ./public --domain mycero.surge.sh
 
 test deployment:
-  stage: deployment test
+  stage: deployment tests
   image: alpine
   script:
     - apk add --no-cache curl
