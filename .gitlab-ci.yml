@@ -1,4 +1,4 @@
-imgae: node
+image: node
 stages:
   - build
   - test
