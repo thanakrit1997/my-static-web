@@ -3,13 +3,16 @@ stages:
   - build
   - test
   - deploy
+  - deployment tests
 
 build website:
   stage: build
   script:
+    - echo $CI_COMMIT_SHORT_SHA
     - npm install
     - npm install -g gatsby-cli
     - gatsby build
+    - sed -i "s/%%VERSION%%/$CI_COMMIT_SHORT_SHA/g" ./public/index.html
   artifacts:
     paths:
       - ./public
@@ -34,3 +37,4 @@ deploy to surge:
   script:
     - npm install --global surge
     - surge --project ./public --domain devfish.surge.sh
+
