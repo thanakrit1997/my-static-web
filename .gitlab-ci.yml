@@ -14,7 +14,7 @@ build website:
       - ./public
 
 test artifact:
-  stage: build
+  stage: test
   script:
     - grep "Gatsby" ./public/index.html
     - grep "xxxxxxxx" ./public/index.html
