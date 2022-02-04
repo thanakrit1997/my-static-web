@@ -30,6 +30,7 @@ test website:
     - curl "http://localhost:9000" | tac | tac | grep -q  "Gatsby"
 
 deploy to surge:
+  stage: deploy
   script:
     - npm install --global surge
     - surge --project ./public --domain devfish.surge.sh
