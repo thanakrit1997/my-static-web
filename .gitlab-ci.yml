@@ -1,10 +1,11 @@
+imgae: node
 stages:
   - build
   - test
+  - deploy
 
 build website:
   stage: build
-  image: node:16
   script:
     - npm install
     - npm install -g gatsby-cli
@@ -21,10 +22,14 @@ test artifact:
 
 test website:
   stage: test
-  image: node
   script:
     - npm install
     - npm install -g gatsby-cli
     - gatsby serve &
     - sleep 3
-    - curl "http://localhost:9000" | grep -q  "Gatsby"
+    - curl "http://localhost:9000" | tac | tac | grep -q  "Gatsby"
+
+deploy to surge:
+  script:
+    - npm install --global surge
+    - surge --project ./public --domain devfish.surge.sh
